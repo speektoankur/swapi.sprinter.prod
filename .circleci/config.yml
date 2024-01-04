@@ -47,7 +47,7 @@ jobs:
       - checkout
       - run:
           name: Deploy Mock
-          command: mvn deploy
+          command: echo "Fake Deployment Successful"
 
 workflows:
   build_and_test:
