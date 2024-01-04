@@ -23,8 +23,39 @@ jobs:
   test:
     executor: java11-executor
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Download Dependencies
+          command: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Integration Tests
           command: mvn test
       - store_artifacts:
           path: target/surefire-reports/emailable-report.html
+  deploy:
+    executor: java11-executor
+    steps:
+      - checkout
+      - run:
+          name: Deploy Mock
+          command: mvn deploy
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
