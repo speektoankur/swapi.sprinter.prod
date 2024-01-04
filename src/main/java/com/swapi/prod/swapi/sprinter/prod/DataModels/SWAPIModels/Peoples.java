@@ -1,0 +1,19 @@
+package com.swapi.prod.swapi.sprinter.prod.DataModels.SWAPIModels;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+@Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class Peoples {
+    public int count;
+    public Object next;
+    public Object previous;
+    public ArrayList<People> results;
+}
