@@ -18,12 +18,20 @@ public class InformationService {
     private StarshipsUtil starshipsUtil;
     @Autowired
     private PlanetsUtil planetsUtil;
+
+    public int countCrewMembers(String getCrewValue){
+        if(getCrewValue.contains(",")){
+            String [] splitter = getCrewValue.split(",");
+            return splitter.length;
+        }
+        return 1;
+    }
     public InformationResponse getInformation(String attackingPersonName, String planetToVerifyQueenPresence){
-        People people = peopleUtil.findPersonDetails(attackingPersonName); // Find Person With Name
+        People people = peopleUtil.findPersonDetails(attackingPersonName);
         Starship starship = !people.getStarships().isEmpty() ? starshipsUtil.getStarship(people.getStarships().get(0).toString()):null;
         InformationStarship informationStarship = new InformationStarship(starship.getName(),starship.getStarship_class(),starship.getModel());
         Planet planet = planetsUtil.getPlanet(planetToVerifyQueenPresence);
         boolean isLieaOnPlanet = planetsUtil.verifyPersonOnPlanet(planet, "Leia Organa");
-        return new InformationResponse(informationStarship, starship.getCrew(), isLieaOnPlanet);
+        return new InformationResponse(informationStarship, countCrewMembers(starship.getCrew()), isLieaOnPlanet);
     }
 }

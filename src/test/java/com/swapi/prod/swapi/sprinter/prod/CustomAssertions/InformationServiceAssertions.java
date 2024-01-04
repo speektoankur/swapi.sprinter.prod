@@ -14,7 +14,7 @@ public class InformationServiceAssertions {
         Assert.assertEquals(informationResponse.getStarship().getName(), "TIE Advanced x1");
         Assert.assertEquals(informationResponse.getStarship().getStarshipClass(), "Starfighter");
         Assert.assertEquals(informationResponse.getStarship().getModel(), "Twin Ion Engine Advanced x1");
-        Assert.assertEquals(informationResponse.getCrew(), "1");
+        Assert.assertEquals(informationResponse.getCrew(), 1);
         Assert.assertTrue(informationResponse.isLeiaOnPlanet());
     }
 
