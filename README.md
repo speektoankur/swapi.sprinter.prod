@@ -10,6 +10,11 @@
     -> Synchrnoized /information service 
     -> Focus on Integration Tests only
 
+**High Level Design of CI/CD**
+
+<img width="1068" alt="Screenshot 2024-01-05 at 8 09 34 AM" src="https://github.com/speektoankur/swapi.sprinter.prod/assets/101249539/8f7891a0-bb45-4cea-9006-fe689fa0162e">
+
+
 **APIs Interactions Flow**
 
 <img width="1188" alt="Screenshot 2024-01-05 at 2 01 17 AM" src="https://github.com/speektoankur/swapi.sprinter.prod/assets/101249539/e41404cb-5160-4fb0-a102-a9dc3142118f">
