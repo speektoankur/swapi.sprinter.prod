@@ -4,8 +4,10 @@ import com.swapi.prod.swapi.sprinter.prod.CustomAssertions.InformationServiceAss
 import com.swapi.prod.swapi.sprinter.prod.DataModels.ErrorResponse;
 import com.swapi.prod.swapi.sprinter.prod.DataModels.InformationResponse;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -31,6 +33,7 @@ class IntegrationTests extends InformationServiceAssertions {
 						.then().extract().response();
 		InformationResponse informationResponse = response.as(InformationResponse.class);
 		super.AssertValidInformationServiceResponse(informationResponse);
+		Assert.assertEquals(response.statusCode(), HttpStatus.SC_OK);
 	}
 
 	@Test
